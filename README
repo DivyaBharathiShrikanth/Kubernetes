@@ -1,0 +1,13 @@
+3. Build Docker Images
+Navigate into each folder and build the image:
+docker build -t your_dockerhub_username/order-service:v1 .
+docker build -t your_dockerhub_username/invoice-service:v1 .
+docker build -t your_dockerhub_username/dealer-service:v1 .
+
+4. Push to Docker Hub
+
+docker login
+docker push your_dockerhub_username/order-service:v1
+docker push your_dockerhub_username/invoice-service:v1
+docker push your_dockerhub_username/dealer-service:v1
+  

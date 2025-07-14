@@ -1,0 +1,63 @@
+#Order service
+apiVersion: apps/v1  #api version
+kind: Deployment  
+metadata:
+  name: order-service 
+spec: 
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: order-service  
+  template: 
+    metadata:
+      labels:
+        app: order-service  
+      containers:   
+      - name: order-container      
+        image: divyabharathisrinivasan/order-service:v1      
+        ports:
+        - containerPort: 80       
+---
+
+#dealer service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dealer-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dealer-service
+  template:
+    metadata:
+      labels:
+        app: dealer-service
+    spec:
+      containers:
+      - name: dealer-container
+        image: divyabharathisrinivasan/dealer-service:v1
+        ports:
+        - containerPort: 80
+#kubectl apply -f order_service.yaml
+---
+#invoice service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invoice-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invoice-service
+  template:
+    metadata:
+      labels:
+        app: invoice-service
+    spec:
+      containers:
+      - name: invoice-container
+        image: divyabharathisrinivasan/invoice-service:v1
+        ports:
+        - containerPort: 80
